@@ -31,3 +31,19 @@ npm run dev
 ```
 
 Requires a running MongoDB instance (local or Atlas) at the URI set in `.env`.
+
+## Testing without a local MongoDB install
+
+`test-with-memory-db.js` spins up a temporary in-memory MongoDB instance
+(via `mongodb-memory-server`) and starts the API against it on port 5050 —
+useful for verifying all CRUD routes without installing/configuring MongoDB
+locally:
+
+```bash
+npm install
+npm run test:memdb
+```
+
+Then hit `http://localhost:5050/api/interns` with GET/POST/PUT/DELETE. All
+endpoints (including validation and duplicate-email conflict handling) were
+verified this way.
